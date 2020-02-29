@@ -1,0 +1,11 @@
+.Post{
+    margin: 5px;
+    padding: 20px;
+    min-height: 100px;
+    min-width: 250px;
+    /* min-height: 100px;
+    min-width: 300px; */
+    border:solid 1px black;
+    /* display: inline-block; */
+    /* text-align: center; */
+}

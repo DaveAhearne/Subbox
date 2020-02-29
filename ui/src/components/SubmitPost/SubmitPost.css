@@ -1,0 +1,5 @@
+.SubmitPost {
+    height: 100px;
+    background-color: blue;
+    flex-shrink: 0;
+}
