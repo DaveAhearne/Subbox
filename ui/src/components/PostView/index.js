@@ -2,20 +2,16 @@ import React from 'react';
 import PostContent from "../PostContent"
 import './PostView.css';
 
-function PostView() {
+function PostView(props) {
+  const {submissions} = props
+
   return (
     <div className="PostView">
-      <PostContent/>
-      <PostContent/>
-      <PostContent/>
-      <PostContent/>
-      <PostContent/>
-      <PostContent/>
-      <PostContent/>
-      <PostContent/>
-      <PostContent/>
-      <PostContent/>
-      <PostContent/>
+      {
+        submissions.map(c => {
+          return <PostContent content={c}/>
+        })
+      }
     </div>
   );
 }

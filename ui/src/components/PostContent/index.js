@@ -1,9 +1,11 @@
 import React from "react"
 import "./PostContent.css"
 
-function PostContent(){
+function PostContent(props){
+    const { content } = props
+
     return <div className="Post">
-        Content here
+        {content}
     </div>
 }
 
