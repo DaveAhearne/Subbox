@@ -1,0 +1,20 @@
+{
+  "name": "subbox",
+  "version": "1.0.0",
+  "description": "General anonymous feedback utility for storing and sharing thoughts and opinions blamelessly",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "./infrastructure/build.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DaveAhearne/Subbox.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DaveAhearne/Subbox/issues"
+  },
+  "homepage": "https://github.com/DaveAhearne/Subbox#readme"
+}

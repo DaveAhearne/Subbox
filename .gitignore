@@ -172,6 +172,9 @@ sketch
 *.tfstate
 *.tfstate.*
 
+# .tfvars files
+*.tfvars
+
 # Crash log files
 crash.log
 
@@ -221,3 +224,6 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/osx,node,react,linux,windows,terraform
+
+# Ignore zipped build lambdas
+*/build/*.zip
