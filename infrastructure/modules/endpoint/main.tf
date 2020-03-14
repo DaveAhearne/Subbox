@@ -12,7 +12,7 @@ resource "aws_api_gateway_method" "gateway_http_method" {
 }
 
 resource "aws_iam_role" "iam_for_lambda" {
-  name = "iam_for_lambda"
+  name = "iam_for_lambda_${var.lambda_name}"
 
   assume_role_policy = <<EOF
 {
@@ -54,6 +54,10 @@ resource "aws_api_gateway_integration" "lambda_integration" {
   rest_api_id = var.api_gateway_id
   resource_id = var.api_gateway_resource_id
   http_method = aws_api_gateway_method.gateway_http_method.http_method
+
+  depends_on = [
+    aws_api_gateway_method.gateway_http_method
+  ]
   
   integration_http_method = "POST"
   type                    = "AWS_PROXY"
