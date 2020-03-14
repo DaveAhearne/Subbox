@@ -227,3 +227,5 @@ $RECYCLE.BIN/
 
 # Ignore zipped build lambdas
 */build/*.zip
+
+ui/build/*

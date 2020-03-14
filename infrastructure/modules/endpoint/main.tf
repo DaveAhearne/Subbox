@@ -59,15 +59,3 @@ resource "aws_api_gateway_integration" "lambda_integration" {
   type                    = "AWS_PROXY"
   uri                     = aws_lambda_function.lambda.invoke_arn
 }
-
-# Should probably move this out of here when we do the other endpoint?
-resource "aws_api_gateway_deployment" "subbox_api_deployment" {
-  depends_on = [ aws_api_gateway_integration.lambda_integration ]
-
-  rest_api_id = var.api_gateway_id
-  stage_name  = "prod"
-
-  variables = {
-    deployed_at = "${var.deployed_at}"
-  }
-}
