@@ -31,6 +31,31 @@ resource "aws_iam_role" "iam_for_lambda" {
 EOF
 }
 
+resource "aws_iam_role_policy" "dynamodb-lambda-policy"{
+  name = "dynamodb_lambda_policy_${var.lambda_name}"
+  role = "${aws_iam_role.iam_for_lambda.id}"
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "dynamodb:*"
+      ],
+      "Resource": "${var.environment_variables.table_arn}"
+    }
+  ]
+}
+EOF
+}
+
+# Attaches the role that allows lambdas to write to cloudwatch etc
+resource "aws_iam_role_policy_attachment" "basic-exec-role" {
+    role       = "${aws_iam_role.iam_for_lambda.name}"
+    policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+}
+
 resource "aws_lambda_permission" "api_gateway_execute_permissions" {
   statement_id  = "AllowExecutionFromAPIGateway"
   action        = "lambda:InvokeFunction"
@@ -48,6 +73,10 @@ resource "aws_lambda_function" "lambda" {
   role          = aws_iam_role.iam_for_lambda.arn
   handler       = "index.handler"
   runtime       = "nodejs12.x"
+
+  environment {
+    variables = var.environment_variables
+  }
 }
 
 resource "aws_api_gateway_integration" "lambda_integration" {

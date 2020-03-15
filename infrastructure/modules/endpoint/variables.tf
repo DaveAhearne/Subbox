@@ -21,3 +21,9 @@ variable "lambda_name" {
 variable "http_method" {
     description = "Which HTTP method to use e.g. GET, POST, PUT etc."
 }
+
+variable "environment_variables" {
+  description = "The environment variables supplied to the Lambda"
+  type = map
+  default = {}
+}
