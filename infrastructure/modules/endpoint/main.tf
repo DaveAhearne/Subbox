@@ -33,7 +33,7 @@ EOF
 
 resource "aws_iam_role_policy" "dynamodb-lambda-policy"{
   name = "dynamodb_lambda_policy_${var.lambda_name}"
-  role = "${aws_iam_role.iam_for_lambda.id}"
+  role = aws_iam_role.iam_for_lambda.id
   policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -52,7 +52,7 @@ EOF
 
 # Attaches the role that allows lambdas to write to cloudwatch etc
 resource "aws_iam_role_policy_attachment" "basic-exec-role" {
-    role       = "${aws_iam_role.iam_for_lambda.name}"
+    role       = aws_iam_role.iam_for_lambda.name
     policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
 

@@ -35,6 +35,11 @@ POLICY
 }
 
 resource "null_resource" "remove_and_upload_to_s3" {
+
+  triggers = {
+    always_run = var.deployed_at
+  }
+  
   provisioner "local-exec" {
     command = "aws s3 sync ${var.path_to_folder} s3://${aws_s3_bucket.static_website_bucket.id}"
   }
@@ -45,7 +50,7 @@ resource "null_resource" "remove_and_upload_to_s3" {
 # This seems to go bang on the first run - Might have to put something in so that its got a dependency?
 output "public_website_url" {
   description = "The target URL of the deployed website"
-  value = aws_s3_bucket.static_website_bucket.website_endpoint
+  value       = aws_s3_bucket.static_website_bucket.website_endpoint
 
   depends_on = [
     aws_s3_bucket.static_website_bucket
